@@ -1,0 +1,84 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  .card {
+    background-color: rgb(245, 245, 245);
+  }
+
+  .d-flex {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .mb-3 {
+    margin-bottom: 2rem;
+  }
+
+  .mb-3 input {
+    width: 100%;
+  }
+
+  .larger-label {
+    font-size: 1.2rem;
+  }
+</style>
+
+<h1 class="text-center">Iniciar Sesion</h1>
+<div class="container p-5 mb-4">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card border-0">
+        <div class="card-body">
+          <span style="color: rgb(112, 22, 22)" class="text-danger">
+            <b>{{ error }}</b>
+          </span>
+
+          <form action="{% url 'log-in' %}" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3 d-flex">
+              <label class="text-center larger-label" for="usuario"
+                >Usuario</label
+              >
+              <input
+                type="text"
+                name="username"
+                id="usuario"
+                class="form-control"
+              />
+            </div>
+
+            <div class="mb-3 d-flex">
+              <label class="text-center larger-label" for="password"
+                >Contraseña</label
+              >
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+              />
+            </div>
+
+            <div class="container mt-5">
+              <div class="d-grid">
+                <button
+                  class="btn"
+                  style="
+                    background-color: rgb(0, 47, 81);
+                    color: white;
+                    width: 100%;
+                  "
+                >
+                  Ingresar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

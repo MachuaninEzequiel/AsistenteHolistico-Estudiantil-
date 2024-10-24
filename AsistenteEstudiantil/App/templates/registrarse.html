@@ -1,0 +1,109 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  .card {
+    background-color: rgb(245, 245, 245);
+  }
+
+  .d-flex {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .mb-3 {
+    margin-bottom: 2rem;
+  }
+
+  .mb-3 input {
+    width: 100%;
+  }
+
+  .larger-label {
+    font-size: 1.2rem;
+  }
+</style>
+
+<div class="container">
+  {{ error }}
+
+  <form action="{% url 'registrarse' %}" method="POST">
+    {% csrf_token %}
+    <h1 class="text-center mb-4">Registro de usuario</h1>
+    <div class="container p-5">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div
+            class="card border-0"
+            style="
+              outline-color: linear-gradient(
+                to right,
+                rgb(2, 40, 71),
+                rgb(1, 12, 23) 10%,
+                rgb(1, 9, 20) 50%,
+                rgb(1, 24, 45) 75%
+              );
+            "
+          >
+            <div
+              class="card-body"
+              style="
+                outline-color: linear-gradient(
+                  to right,
+                  rgb(2, 40, 71),
+                  rgb(1, 12, 23) 10%,
+                  rgb(1, 9, 20) 50%,
+                  rgb(1, 24, 45) 75%
+                );
+              "
+            >
+              <div class="mb-3 d-flex">
+                <label
+                  class="text-center larger-label"
+                  for="{{ form.username.id_for_label }}"
+                  >Nombre de usuario</label
+                >
+                {{ form.username }}
+              </div>
+
+              <div class="mb-3 mt-3 d-flex">
+                <label
+                  class="text-center larger-label"
+                  for="{{ form.password1.id_for_label }}"
+                  >Contraseña</label
+                >
+                {{ form.password1 }}
+              </div>
+
+              <div class="mb-3 mt-3 d-flex">
+                <label
+                  class="text-center larger-label"
+                  for="{{ form.password2.id_for_label }}"
+                  >Repita la Contraseña</label
+                >
+                {{ form.password2 }}
+              </div>
+
+              <div class="mb-3 mt-3 d-flex">
+                <label for="{{ form.icon.id_for_label }}"></label>
+                {{ form.icon }}
+              </div>
+
+              <div class="container mt-5 mb-3">
+                <div class="d-grid">
+                  <button
+                    class="btn"
+                    style="background-color: rgb(0, 47, 81); color: white"
+                  >
+                    Registrarse
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <body>
+    <h1>User Profile</h1>
+    <div>
+      <h2>{{ user_profile.user.username }}</h2>
+      <!-- Detalles del usuario -->
+      <p>Email: {{ user_profile.user.email }}</p>
+      <p>Nombre: {{ user_profile.user.first_name }}</p>
+      <p>Apellido: {{ user_profile.user.last_name }}</p>
+      <!-- Detalles del perfil -->
+      <p>Tokens: {{ user_profile.tokens }}</p>
+      <!-- Avatar -->
+      <!-- Mostrar las imágenes seleccionadas del avatar -->
+      {% if user_profile.selected_background %}
+      <img src="{{ user_profile.selected_background.url }}" alt="Fondo" />
+      {% endif %} {% if user_profile.selected_head %}
+      <img src="{{ user_profile.selected_head.url }}" alt="Cabeza" />
+      {% endif %} {% if user_profile.selected_torso %}
+      <img src="{{ user_profile.selected_torso.url }}" alt="Torso" />
+      {% endif %} {% if user_profile.selected_legs %}
+      <img src="{{ user_profile.selected_legs.url }}" alt="Piernas" />
+      {% endif %} {% if user_profile.selected_feet %}
+      <img src="{{ user_profile.selected_feet.url }}" alt="Pies" />
+      {% endif %}
+      <!-- Opciones de personalización del avatar (eliminadas) -->
+      <!-- Información adicional -->
+      <h3>Información Adicional</h3>
+      <ul>
+        <li>
+          Fecha de Registro: {{ user_profile.created_at|date:"F j, Y, g:i a" }}
+        </li>
+        <!-- Agrega otros detalles adicionales según sea necesario -->
+      </ul>
+    </div>
+  </body>
+</div>
+{% endblock %}

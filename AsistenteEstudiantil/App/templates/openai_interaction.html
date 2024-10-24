@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %}Interacción con OpenAI{% endblock %}
+{% block head %}
+<!-- Puedes agregar aquí cualquier CSS adicional -->
+{% endblock %} {% block content %}
+<h1>Interacción con OpenAI</h1>
+<button id="openai-button">Obtener ayuda</button>
+<div id="response-container"></div>
+{% endblock %} {% block scripts %}
+<script>
+  document
+    .getElementById("openai-button")
+    .addEventListener("click", function () {
+      // Realizar una solicitud al servidor para interactuar con OpenAI
+      fetch("/interact-with-openai/")
+        .then((response) => response.json())
+        .then((data) => {
+          // Mostrar la respuesta en el contenedor
+          document.getElementById("response-container").innerText =
+            data.response;
+        });
+    });
+</script>
+{% endblock %}

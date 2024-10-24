@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  h1 {
+    font-family: "Rubik Glitch", system-ui;
+  }
+
+  h2 {
+    font-family: "Rubik Glitch", system-ui;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h1 class="mb-4">Nivel de Estrés</h1>
+      <h4 class="mb-4">Usuario: {{ user.username }}</h4>
+
+      <div class="row">
+        {% for estres_academico in estres_academico_lista %}
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">
+                <strong>Nivel de Estrés:</strong>
+              </p>
+              <p>{{ estres_academico.nivel_de_estres }}</p>
+
+              <p class="card-text">
+                <strong>Emociones:</strong>
+              </p>
+              <p>{{ estres_academico.emociones }}</p>
+
+              <p class="card-text">
+                <strong>Fecha de Creación:</strong>
+              </p>
+              <p>{{ estres_academico.fecha_creacion|date:"F j, Y H:i" }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          {% if recomendacion_generada %}
+          <p>Longitud de la recomendación generada:</p>
+          <p>{{ recomendacion_generada|length }}</p>
+          {% else %}
+          <p>No hay recomendación generada.</p>
+          {% endif %} {% if recomendacion %}
+          <div class="alert alert-info" role="alert">
+            <strong>Recomendación:</strong>
+            <p>{{ recomendacion_generada }}</p>
+          </div>
+          {% endif %}
+
+          <h2 class="mt-4">Analizar Emociones</h2>
+          <form method="post" action="{% url 'ver-nivel-estres' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <textarea
+                name="texto_a_analizar"
+                rows="4"
+                class="form-control"
+                placeholder="Ingresa el texto a analizar"
+              ></textarea>
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="btn"
+                style="background-color: rgb(0, 47, 81); color: white"
+              >
+                Analizar Emociones
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
+  </div>
+</div>

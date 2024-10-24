@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Insuficientes Tokens</h1>
+
+<p>Lo siento, no tienes suficientes tokens para canjear este producto.</p>
+<p>
+  Vuelve a la <a href="{% url 'store' %}">tienda</a> para ver más productos.
+</p>
+
+{% endblock %}

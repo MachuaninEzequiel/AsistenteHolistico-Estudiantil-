@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--FUENTE PIXELART - font-family: 'Pixelify Sans', sans-serif-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!--FUENTE BORROSA -  font-family: 'Rubik Glitch', system-ui-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body style="font-family: 'Pixelify Sans', sans-serif; font-size: 1.1em">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="
+        background: linear-gradient(
+          to right,
+          rgb(2, 40, 71),
+          rgb(1, 12, 23) 10%,
+          rgb(1, 9, 20) 50%,
+          rgb(1, 24, 45) 75%
+        );
+      "
+    >
+      <div class="container">
+        {% if user.is_authenticated %}
+        <b class="navbar-brand">Aura</b>
+        {% else %}
+        <a class="navbar-brand"><b>Aura</b></a>
+        {% endif %}
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a
+                href="{% url 'dashboard' %}"
+                class="nav-link"
+                style="color: aliceblue"
+                >Dashboard</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'store' %}"
+                class="nav-link"
+                style="color: aliceblue"
+                >Tienda</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'user-profile' %}"
+                class="nav-link"
+                style="color: aliceblue"
+                >Perfil</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'log-out'%}"
+                class="nav-link"
+                style="color: aliceblue"
+                >Salir</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a href="{% url 'log-in' %}" class="nav-link">Ingresar</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'registrarse' %}" class="nav-link">Registrarse</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      class="container animate__animated animate__pulse animate__faster {% if template_name == 'registrarse.html' %}small-container{% elif template_name == 'store.html' %}wide-container{% elif template_name == 'login.html' %}small-container{% endif %}"
+    >
+      <div class="card border-0 shadow my-5 animated-container">
+        <div class="card-body p-5">
+          {% block content %} {% endblock content %}
+        </div>
+      </div>
+    </div>
+
+    <style>
+      body {
+        background: url("https://images.unsplash.com/photo-1703994643626-c47629018e03?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+          no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+      }
+      .small-container {
+        min-height: 300px;
+        max-width: 800px;
+        min-width: 300px;
+      }
+
+      .wide-container {
+        min-height: 300px;
+        max-width: 1000px;
+        min-width: 300px;
+      }
+
+      .animated-container {
+        background-color: rgb(245, 245, 245); /* Color inicial */
+        /*transition: background-color 0.5s ease; /* Duración y función de la transición */
+      }
+    </style>
+  </body>
+</html>
